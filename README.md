@@ -3,7 +3,7 @@
 # Layout-Your-3D: Controllable and Precise 3D Generation with 2D Blueprint
 [Junwei Zhou](https://github.com/Colezwhy)<sup>1</sup>,[Xueting Li](https://sunshineatnoon.github.io/)<sup>2</sup>,[Lu Qi](http://luqi.info/)<sup>3</sup>, [Ming-Hsuan Yang](https://faculty.ucmerced.edu/mhyang/)<sup>3,4</sup>
 
-<sup>1</sup>  Huazhong University of Science and Technology, <sup>2</sup>  NVIDIA, <sup>3</sup>  UC Merced, <sup>4</sup> Yonsei University
+<sup>1</sup>  Huazhong University of Science and Technology, <sup>2</sup>  NVIDIA, <sup>3</sup>  Wuhan University, <sup>4</sup> Insta360 Research, <sup>5</sup> UC Merced, <sup>6</sup> Yonsei University
 
 Official implementation for paper 'Layout-Your-3D: Controllable and Precise 3D Generation with 2D Blueprint'.
 
