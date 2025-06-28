@@ -23,6 +23,8 @@ Official implementation for paper 'Layout-Your-3D: Controllable and Precise 3D G
 <br>
 Given a text prompt describing multiple objects and their 2D spatial relationships, our method generates a 3D scene depicting these objects naturally interacting with one another. Also, Layout-Your-3D supports instance-wise attributes editing and customization, which opens up new possibilities for compositional 3D generation.  
 
+<br>
+
 <div align="center">
 <div style="width: 80%; margin: 0 auto;">
 <table class="center" style="width: 75%">
@@ -38,6 +40,8 @@ Given a text prompt describing multiple objects and their 2D spatial relationshi
  </table>
  </div>
 </div>
+
+<br>
 
 ***Check out our [website](https://colezwhy.github.io/layoutyour3d/) and [paper](https://arxiv.org/abs/2410.15391) for more results!***
 
