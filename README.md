@@ -1,7 +1,7 @@
 <div align="center">
 
 # Layout-your-3D: Controllable and Precise 3D Generation with 2D Blueprint
-[Junwei Zhou](https://github.com/Colezwhy)<sup>1</sup>,[Xueting Li](https://sunshineatnoon.github.io/)<sup>2</sup>,[Lu Qi](http://luqi.info/)<sup>3</sup>, [Ming-Hsuan Yang](https://faculty.ucmerced.edu/mhyang/)<sup>3,4</sup>
+[Junwei Zhou](https://github.com/Colezwhy)<sup>1</sup>,[Xueting Li](https://sunshineatnoon.github.io/)<sup>2</sup>,[Lu Qi](http://luqi.info/)<sup>3,4</sup>, [Ming-Hsuan Yang](https://faculty.ucmerced.edu/mhyang/)<sup>5,6</sup>
 
 <sup>1</sup>  Huazhong University of Science and Technology, <sup>2</sup>  NVIDIA, <sup>3</sup>  Wuhan University 
 
@@ -12,8 +12,8 @@ Official implementation for paper 'Layout-Your-3D: Controllable and Precise 3D G
 </div>
 
 ## Update
-- release ver0.1: there are still some parts missing or not finished, please stay tuned!
-- Layout-Your-3D is accepted by ICLR 2025.
+- release ver 0.1: there are still some parts missing or not finished, please stay tuned!
+- Layout-Your-3D is accepted by *ICLR 2025*.
 
 ## Overview
 <div align="center">
