@@ -1,0 +1,153 @@
+name: "instance_gaussians_sd" # 
+tag: "${rmspace:${system.prompt_processor.prompt},_}"
+exp_root_dir: "outputs"
+seed: 0
+
+data_type: "random-camera-datamodule"
+data:
+  batch_size: [1, 1]
+  width: [256, 512]
+  height: [256, 512]
+  resolution_milestones: [800]
+  camera_distance_range: [0.8, 2.0] # [0.8, 2.0] [0.5, 1.5]
+  fovy_range: [40, 70] # [40, 70]
+  elevation_range: [-10, 45]
+  camera_perturb: 0
+  center_perturb: 0
+  up_perturb: 0.
+  eval_camera_distance: 1.3
+  # eval_fovy_deg: 70
+  eval_elevation_deg: 0
+  eval_width: 512
+  eval_height: 512
+  n_val_views: 4
+  rays_d_normalize: false
+
+system_type: "gaussian-splatting-layout-system"
+system:
+  geometry_type: "gaussian-splatting"
+  geometry:
+    position_lr: [0, 0.0005, 0.00005, 500] # [0, 0.0005, 0.0001, 500]
+    scale_lr: [0, 0.005, 0.001, 800]
+    feature_lr: 0.01 # 0.005
+    opacity_lr: 0.01 # 0.05
+    rotation_lr: 0.001
+    min_opac_prune: 0.05
+    prune_interval: 100
+    prune_from_iter: 300
+    prune_until_iter: 900
+    densification_interval: 100
+    densify_from_iter: 300
+    densify_until_iter: 900
+    opacity_reset_interval: 50000000
+    densify_grad_threshold: 0.0002
+    split_thresh: 0.02
+    radii2d_thresh: 1000
+    
+    init_num_pts: 4096
+    pc_init_radius: 0.8
+    opacity_init: 0.2
+
+    max_num: 500000
+    optimize_layout: false
+    optimize_gaussians: true
+    init_from_depth: true
+    layout_2d: [[0.23, 0.10, 0.77, 0.90], [0.45, 0.40, 0.55, 0.85]]
+    layout_depth_lr: 0.001
+    layout_quat_lr: 0.01
+
+  renderer_type: "diff-gaussian-rasterizer-shading"
+  renderer:
+    debug: false
+
+# ==================== Here we currently do not modify this ====================== #
+  material_type: "gaussian-diffuse-with-point-light-material"
+  material:
+    ambient_only_steps: 300
+    textureless_prob: 0.0
+    ambient_light_color: [1.0, 1.0, 1.0]
+    diffuse_light_color: [0.0, 0.0, 0.0]
+    soft_shading: true
+
+  background_type: "gaussian-mvdream-neural-environment-map-background"
+  background:
+    color_activation: sigmoid
+    random_aug: true
+    random_aug_prob: 0.5
+
+  prompt_processor_type: "deep-floyd-prompt-processor"
+  prompt_processor:
+    pretrained_model_name_or_path: "DeepFloyd/IF-I-XL-v1.0"
+    prompt: ???
+    negative_prompt: "ugly, bad anatomy, blurry, pixelated obscure, unnatural colors, poor lighting, dull, and unclear, cropped, lowres, low quality, artifacts, duplicate, morbid, mutilated, poorly drawn face, deformed, dehydrated, bad proportions"
+    front_threshold: 30.0
+    back_threshold: 30.0
+    use_perp_neg: true
+
+  guidance_type: "deep-floyd-guidance"
+  guidance:
+    pretrained_model_name_or_path: "DeepFloyd/IF-I-XL-v1.0"
+    guidance_scale: 20
+    # min_step_percent: [0, 0.02, 0.10, 900]
+    # max_step_percent: [0, 0.50, 0.40, 900]
+    min_step_percent: [0, 0.10, 0.02, 800]
+    max_step_percent: [0, 0.75, 0.50, 800]
+    grad_clip: [0, 10.0, 15.0, 800]
+
+
+    # min_step_percent: [0, 0.10, 0.02, 800]
+    # max_step_percent: [0, 0.75, 0.50, 800]
+
+
+  # guidance_type: "mvdream-multiview-diffusion-guidance"
+  # guidance:
+  #   model_name: "sd-v2.1-base-4view"
+  #   ckpt_path: null # path to a pre-downloaded checkpoint file (null for loading from URL)
+  #   guidance_scale: 50.0
+  #   min_step_percent: [500, 0.5, 0.1, 501]  # (start_iter, start_val, end_val, end_iter)
+  #   max_step_percent: [500, 0.98, 0.5, 501]
+  #   recon_loss: true
+  #   recon_std_rescale: 0.5
+
+  exporter_type: "gaussian-mesh-exporter"
+
+  loggers:
+    wandb:
+      enable: false
+      project: 'threestudio'
+      name: None
+
+  loss:
+    lambda_sds: 1.0
+    lambda_position: 0.0 # 1.0
+    lambda_opacity: 0. # 0.1
+    lambda_sparsity: 0.0
+    lambda_scales: 0.0 # 0.001
+    lambda_tv_loss: 1.0 # 1.0
+    lambda_depth_tv_loss: 20.0 # 20.0
+    lambda_normal_smooth_loss: 100.0 # 100.0
+    lambda_feat_recon_loss: 0.0
+    lambda_collision: 0.0
+
+  optimizer:
+    name: AdamW
+    args:
+      lr: 0.01
+      betas: [0.9, 0.99]
+      eps: 1.e-8
+    params:
+      background:
+        lr: 0.001
+
+trainer:
+  max_steps: 1500
+  log_every_n_steps: 1
+  num_sanity_val_steps: 0
+  val_check_interval: 100
+  enable_progress_bar: true
+  precision: 32
+
+checkpoint:
+  save_last: true # save at each validation time
+  save_top_k: -1
+  every_n_train_steps: ${trainer.max_steps}
