@@ -196,6 +196,4 @@ wandb/
 # vscode
 .code-workspace
 
-custom/*
-
 load/tets/256_tets.npz

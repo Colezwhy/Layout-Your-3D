@@ -179,7 +179,7 @@ pyrightconfig.json
 .threestudio_cache/
 outputs/
 outputs-gradio/
-interaction_cache/*
+interaction_cache/
 
 # pretrained model weights
 *.ckpt
