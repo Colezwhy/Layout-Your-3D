@@ -29,9 +29,8 @@ Given a text prompt describing multiple objects and their 2D spatial relationshi
 <div style="width: 80%; margin: 0 auto;">
 <table class="center" style="width: 75%">
     <tr style="line-height: 2">
-      <td style="width: 30%; border: none; text-align: center">In the background, fireworks bursting. Infront of it, there is a teddy bear dancing slowly within a small area.</td>
-      <td style="width: 28%; border: none; text-align: center">An anime girl walking forward
-      in a cherry blossom scene.</td>
+      <td style="width: 30%; border: none; text-align: center">A squirrel standing on a box.</td>
+      <td style="width: 28%; border: none; text-align: center">A cute stuffed toy crocodile and a small stuffed toy rabbit on a skateboard.</td>
     </tr>
     <tr style="line-height: 2">
       <td style="width: 30%; border: none"><img src="./assets/squirrel.gif" width="250"></td>
